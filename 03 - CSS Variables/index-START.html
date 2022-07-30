@@ -22,6 +22,16 @@
 
   <style>
 
+img{
+  padding: var(--spacing);
+  background: var(--base);
+  filter: blur(var(--blur));
+}
+:root{
+  --base: #ffc600;
+  --spacing:10px;
+  --blur:10px;
+}
     /*
       misc styles, nothing to do with CSS variables
     */
@@ -34,6 +44,9 @@
       font-weight: 100;
       font-size: 50px;
     }
+    .h1{
+      color: var(--base);
+    }
 
     .controls {
       margin-bottom: 50px;
@@ -45,6 +58,14 @@
   </style>
 
   <script>
+const inputs =document.querySelectorAll('.controls input')
+function getUpdate(){
+const suffix = this.dataset.sizing;
+document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix)
+}
+inputs.forEach(input => input.addEventListener('change',getUpdate))
+inputs.forEach(input => input.addEventListener('mousemove',getUpdate))
+
   </script>
 
 </body>
